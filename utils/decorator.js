@@ -22,12 +22,12 @@ class ConsoleDecorator {
 
     static showFormatNote(note){
         this.drawLine(30, 1);
-        console.log(`\n[${note.id}]`);
-        console.log(`\n[${note.title}]`);
+        console.log(`номер задачи: [${note.id}]`);
+        console.log(`\nимя задачи: ${note.title}`);
         this.drawLine(30, 1);
-        console.log(`\n[${note.content}]`);
-        this.drawLine(30, 1);
+        console.log(`цель: ${note.content}`);
         console.log(`\n[${note.date}]`);
+        this.drawLine(30, 1);
     }
 }
 
