@@ -55,10 +55,26 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
+    if (url.startsWith("/api/notes/") && method === 'DELETE'){
+        const id = parseInt(url.split('/')[3])
+
+        if(id >= 0 && id < notes.length){
+            notes.splice(id -1, 1)
+            notes = helper.reindexIds(notes)
+            await fileManager.saveData(notes)
+
+            res.writeHead(200, {"Content-Type": "application/json"})
+            res.end(JSON.stringify({succes: true}))
+        }else{
+            res.writeHead(404)
+            res.end(JSON.stringify({succes: false}))
+        }
+    }
+
     return; 
 });
 
-server.listen(6767, () => {
-    console.log("Сервер запущен http://localhost:6767")
+server.listen(1234, () => {
+    console.log("Сервер запущен http://localhost:1234")
 });
 

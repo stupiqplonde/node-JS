@@ -57,5 +57,36 @@ async function showNotes() {
     content.innerHTML = html
 }
 
-showNotes();
+async function deleteNote(){
+    await loadNotes();
+
+    if(notes.length === 0){
+        alert("Заметок пока нет")
+        return
+    }
+
+    let list = ""
+    for (const note of notes){
+        list += `${note.id}: ${note.title}\n`
+    }
+    list = list.trim();
+
+    const input = prompt(`Введите номер заметки для удаления: \n \n ${list}`)
+
+    const id = parseInt(input);
+    if (isNaN(id)){
+        alert("Требуется ввести число")
+        return
+    }
+
+    const res = await fetch(`api/notes/${id}`, {method: 'DELETE'})
+
+    if(res.ok){
+        await showNotes();
+    }
+    else{
+        alert("Неизвестная ошибка")
+    }
+}
+
 loadNotes();
