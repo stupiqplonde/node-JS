@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List 90s Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #d6d6d6;
+            font-family: 'Charcoal', 'Chicago', 'Geneva', 'Monaco', 'Courier New', monospace;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Главное окно — как старый Mac */
+        .apple-window {
+            max-width: 800px;
+            width: 100%;
+            background: #f0f0f0;
+            border: 3px solid #000000;
+            border-radius: 0px;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Строка заголовка — classic Mac title bar */
+        .title-bar {
+            background: #e6e6e6;
+            padding: 8px 12px;
+            border-bottom: 2px solid #b3b3b3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar-icon {
+            width: 16px;
+            height: 16px;
+            background: #000000;
+            display: inline-block;
+            border: 1px solid #6b6b6b;
+        }
+
+        .title-bar-text {
+            flex: 1;
+            font-family: 'Chicago', 'Charcoal', monospace;
+            font-size: 14px;
+            color: #111;
+        }
+
+        /* Панель статуса */
+        .status-bar {
+            background: #e6e6e6;
+            padding: 10px 12px;
+            border-bottom: 1px solid #b3b3b3;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-text {
+            background: white;
+            padding: 4px 8px;
+            border: 1px solid #a0a0a0;
+            font-size: 12px;
+        }
+
+        /* Контейнер для кнопок — 90s Apple UI */
+        .button-panel {
+            background: #e0e0e0;
+            padding: 16px 12px;
+            border-bottom: 1px solid #b3b3b3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* Кнопки в стиле System 7 / Mac OS 9 */
+        .apple-btn {
+            background: #e6e6e6;
+            border: 2px solid #000000;
+            padding: 8px 18px;
+            font-family: 'Chicago', 'Charcoal', 'Geneva', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            color: #111;
+            cursor: pointer;
+            transition: all 0.05s linear;
+            box-shadow: 2px 2px 0px #808080;
+            border-radius: 0px;
+            letter-spacing: 0.3px;
+        }
+
+        .apple-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+            background: #d4d4d4;
+        }
+
+        /* Область содержимого */
+        .content-area {
+            background: #ffffff;
+            padding: 20px 16px;
+            min-height: 320px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            border-top: 1px solid #cccccc;
+        }
+
+        /* Стили для заметок */
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .note-card {
+            background: #fef9e6;
+            border-left: 8px solid #333;
+            padding: 12px 14px;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 2px 2px 0px #e0e0e0;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 5px;
+        }
+
+        .note-id {
+            font-weight: bold;
+            background: #000;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .note-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #1a2c3e;
+            word-break: break-word;
+        }
+
+        .note-date {
+            font-size: 10px;
+            color: #4d4d4d;
+            font-family: 'Monaco', monospace;
+        }
+
+        .note-content {
+            margin-top: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #222;
+            white-space: pre-wrap;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #b3b3b3;
+            margin: 12px 0;
+        }
+
+        .empty-message {
+            background: #f1f1f1;
+            padding: 28px;
+            text-align: center;
+            font-family: 'Chicago', monospace;
+            font-size: 14px;
+            border: 1px dashed #888;
+            color: #444;
+        }
+
+        /* pixel corner для окон */
+        .window-inset {
+            padding: 4px;
+            background: #e8e8e8;
+        }
+
+        footer {
+            background: #e6e6e6;
+            padding: 8px;
+            border-top: 1px solid #b3b3b3;
+            text-align: center;
+            font-size: 10px;
+            font-family: monospace;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="apple-window">
+        <div class="title-bar">
+            <div class="title-bar-icon"></div>
+            <div class="title-bar-text"> Заметки.app</div>
+            <div style="font-size:12px;">✱</div>
+        </div>
+        <div class="status-bar">
+            <span> Системный блокнот</span>
+            <span class="status-text" id="stat">Всего заметок: 0</span>
+        </div>
+        <div class="button-panel">
+            <button class="apple-btn" onclick="addNote()"> Добавить</button>
+            <button class="apple-btn" onclick="showNotes()"> Показать все</button>
+            <button class="apple-btn" onclick="editNote()"> Изменить</button>
+            <button class="apple-btn" onclick="deleteNote()"> Удалить</button>
+        </div>
+        <div class="content-area">
+            <div id="content">
+                <div class="empty-message">
+                     ЗАМЕТКИ НЕ ЗАГРУЖЕНЫ <br>
+                    Нажмите "Показать все" или добавьте новую.
+                </div>
+            </div>
+        </div>
+        <footer>
+            Apple 90s Classic — PowerBook 540c vibe
+        </footer>
+    </div>
+
+    <script src="/api/app.js"></script>
+</body>
+</html>

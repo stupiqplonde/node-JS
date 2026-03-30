@@ -1,13 +1,13 @@
-const fs = require("fs");
-const path = 'note.json'
+import fs from 'fs';
+const path = 'note.json';
 
-const saveData = (notes) => {
-    jsonData = JSON.stringify(notes);
+export const saveData = (notes) => {
+    const jsonData = JSON.stringify(notes);
     fs.writeFileSync(path, jsonData);
     console.log("заметки сохранены!")
 };
 
-const loadData = () => {
+export const loadData = () => {
     try{
         const jsonData = fs.readFileSync(path, 'utf-8');
         return JSON.parse(jsonData);
@@ -17,4 +17,3 @@ const loadData = () => {
     }
 };
 
-module.exports = {saveData, loadData}
